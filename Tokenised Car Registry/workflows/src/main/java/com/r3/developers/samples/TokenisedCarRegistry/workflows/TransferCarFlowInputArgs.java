@@ -1,0 +1,112 @@
+package com.r3.developers.samples.TokenisedCarRegistry.workflows;
+
+import java.util.List;
+
+// A class to hold the deserialized arguments required to start the flow.
+public class TransferCarFlowInputArgs {
+    public TransferCarFlowInputArgs(){}
+    public TransferCarFlowInputArgs(String owner, int mileage, boolean consumed, String reasonForRequest, int tire, int lscOil, int lscCoolant, int lscFilter, int lscBattery, int amountOfTimesServiced, int amountOfRepairs, int currentOwnerMileage, String userName, int identifier, String thirdParty, List<String> mods, List<String> reasonsForRepair) {
+        this.mileage = mileage;
+        this.consumed = consumed;
+        this.reasonForRequest = reasonForRequest;
+        this.lscTire = tire;
+        this.lscOil = lscOil;
+        this.lscCoolant = lscCoolant;
+        this.lscFilter = lscFilter;
+        this.lscBattery = lscBattery;
+        this.amountOfTimesServiced = amountOfTimesServiced;
+        this.currentOwnerMileage = currentOwnerMileage;
+        this.userName = userName;
+        this.owner = owner;
+        this.identifier = identifier;
+        this.thirdParty = thirdParty;
+        this.mods = mods;
+        this.reasonsForRepair = reasonsForRepair;
+    }
+    private int mileage;
+    private boolean consumed;
+    private int currentOwnerMileage;
+    private String userName;
+    private String reasonForRequest;
+
+    private int lscTire; //yearmonthday is the format for the dates
+    private int lscOil;
+    private int lscCoolant;
+    private int lscFilter;
+    private int lscBattery;
+    private int amountOfTimesServiced;
+    private int identifier;
+    private String owner;
+    private String thirdParty;
+    private List<String> mods;
+    private List<String> reasonsForRepair;
+
+
+
+    public int getMileage() {
+        return mileage;
+    }
+
+    public boolean isConsumed() {
+        return consumed;
+    }
+
+
+    public int getCurrentOwnerMileage() {
+        return currentOwnerMileage;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public int getLscTire() {
+        return lscTire;
+    }
+
+    public int getLscCoolant() {
+        return lscCoolant;
+    }
+
+    public int getLscOil() {
+        return lscOil;
+    }
+
+    public int getLscFilter() {
+        return lscFilter;
+    }
+
+    public int getLscBattery() {
+        return lscBattery;
+    }
+
+    public int getAmountOfTimesServiced() {
+        return amountOfTimesServiced;
+    }
+
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public String getThirdParty() {
+        return thirdParty;
+    }
+
+    public List<String> getMods() {
+        return mods;
+    }
+
+    public List<String> getReasonsForRepair() {
+        return reasonsForRepair;
+    }
+
+    public int getIdentifier() {
+        return identifier;
+    }
+
+    public String getReasonForRequest() {
+        return reasonForRequest;
+    }
+
+}

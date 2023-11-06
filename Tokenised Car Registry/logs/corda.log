@@ -1,0 +1,52 @@
+2023-11-06 11:34:11.917 [main] WARN  net.corda.securitymanager.internal.SecurityManagerServiceImpl {} - Security Manager disabled
+2023-11-06 11:34:17.476 [main] INFO  net.corda.securitymanager.internal.SecurityConfigHandlerImpl {} - SecurityConfigHandler started
+2023-11-06 11:34:22.359 [main] INFO  net.corda.applications.workers.combined.CombinedWorker {} - Combined worker starting.
+2023-11-06 11:34:22.384 [main] INFO  net.corda.applications.workers.combined.CombinedWorker {} - LocalWorkerPlatformVersion 50000
+2023-11-06 11:34:22.384 [main] INFO  net.corda.applications.workers.combined.CombinedWorker {} - LocalWorkerSoftwareVersion 5.0.0.0
+2023-11-06 11:34:22.393 [main] INFO  net.corda.applications.workers.combined.CombinedWorker {} - PID: 5180
+2023-11-06 11:34:22.394 [main] INFO  net.corda.applications.workers.combined.CombinedWorker {} - Command: C:\Program Files\Java\zulu11.68.17-ca-jdk11.0.21-win_x64\bin\java.exe
+2023-11-06 11:34:22.394 [main] INFO  net.corda.applications.workers.combined.CombinedWorker {} - arguments: Null
+2023-11-06 11:34:22.394 [main] INFO  net.corda.applications.workers.combined.CombinedWorker {} - User: LAPTOP-FARIS\ASUS
+2023-11-06 11:34:22.395 [main] INFO  net.corda.applications.workers.combined.CombinedWorker {} - StartInstant: 2023-11-06T07:34:04.949Z
+2023-11-06 11:34:22.395 [main] INFO  net.corda.applications.workers.combined.CombinedWorker {} - TotalCpuDuration: PT1M32.34375S
+2023-11-06 11:34:22.396 [main] INFO  net.corda.applications.workers.combined.CombinedWorker {} - classpath: C:\Users\ASUS/.corda/corda5/combinedWorker/corda-combined-worker-5.0.0.0.jar
+2023-11-06 11:34:22.409 [main] INFO  net.corda.applications.workers.combined.CombinedWorker {} - VM OpenJDK 64-Bit Server VM Azul Systems, Inc. 11.0.21+9-LTS
+2023-11-06 11:34:22.419 [main] INFO  net.corda.applications.workers.combined.CombinedWorker {} - Quasar's instrumentation verification is enabled
+2023-11-06 11:34:23.037 [main] INFO  net.corda.applications.workers.combined.CombinedWorker {} - Combined worker stopping.
+2023-11-06 11:34:23.038 [main] INFO  net.corda.processors.uniqueness.internal.UniquenessProcessorImpl {} - Uniqueness processor stopping.
+2023-11-06 11:34:23.038 [main] INFO  net.corda.processors.db.internal.DBProcessorImpl {} - DB processor stopping.
+2023-11-06 11:34:23.038 [main] INFO  net.corda.processors.flow.internal.FlowProcessorImpl {} - Flow processor stopping.
+2023-11-06 11:34:23.055 [main] INFO  net.corda.processors.verification.internal.VerificationProcessorImpl {} - Verification processor stopping.
+2023-11-06 11:34:23.056 [main] INFO  net.corda.processors.rest.internal.RestProcessorImpl {} - REST processor stopping.
+2023-11-06 11:34:23.056 [main] INFO  net.corda.processors.p2p.linkmanager.internal.LinkManagerProcessorImpl {} - Link manager processor stopping.
+2023-11-06 11:34:23.056 [main] INFO  net.corda.processors.p2p.gateway.internal.GatewayProcessorImpl {} - Gateway processor stopping.
+2023-11-06 11:34:23.106 [main] ERROR net.corda.osgi.framework.OSGiFrameworkMain {} - Error: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:319) ~[?:?]
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49) ~[?:?]
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:247) ~[?:?]
+	at org.postgresql.Driver.makeConnection(Driver.java:434) ~[?:?]
+	at org.postgresql.Driver.connect(Driver.java:291) ~[?:?]
+	at java.sql.DriverManager.getConnection(DriverManager.java:677) ~[java.sql:?]
+	at java.sql.DriverManager.getConnection(DriverManager.java:228) ~[java.sql:?]
+	at org.postgresql.ds.common.BaseDataSource.getConnection(BaseDataSource.java:103) ~[?:?]
+	at org.postgresql.ds.common.BaseDataSource.getConnection(BaseDataSource.java:87) ~[?:?]
+	at net.corda.application.dbsetup.PostgresDbSetup.superUserConnection(PostgresDbSetup.kt:102) ~[?:?]
+	at net.corda.application.dbsetup.PostgresDbSetup.dbInitialised(PostgresDbSetup.kt:119) ~[?:?]
+	at net.corda.application.dbsetup.PostgresDbSetup.run(PostgresDbSetup.kt:54) ~[?:?]
+	at net.corda.applications.workers.combined.CombinedWorker.startup(CombinedWorker.kt:148) ~[?:?]
+	at net.corda.osgi.framework.OSGiFrameworkWrap.startApplication(OSGiFrameworkWrap.java:603) ~[corda-combined-worker-5.0.0.0.jar:?]
+	at net.corda.osgi.framework.OSGiFrameworkMain.main(OSGiFrameworkMain.java:169) [corda-combined-worker-5.0.0.0.jar:?]
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.PlainSocketImpl.waitForConnect(Native Method) ~[?:?]
+	at java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107) ~[?:?]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:412) ~[?:?]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:255) ~[?:?]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:237) ~[?:?]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:?]
+	at java.net.Socket.connect(Socket.java:615) ~[?:?]
+	at org.postgresql.core.PGStream.createSocket(PGStream.java:241) ~[?:?]
+	at org.postgresql.core.PGStream.<init>(PGStream.java:98) ~[?:?]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:109) ~[?:?]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:235) ~[?:?]
+	... 14 more
