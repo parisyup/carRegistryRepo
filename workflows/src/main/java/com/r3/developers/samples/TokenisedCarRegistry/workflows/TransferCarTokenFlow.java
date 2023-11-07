@@ -58,7 +58,7 @@ public class TransferCarTokenFlow implements ClientStartableFlow {
     @CordaInject
     public DigestService digestService;
 
-    String authNode = "CN=AUTORITY, OU=Test Dept, O=UAEPD, L=AbuDhabi, C=AE";
+    String authNode = "CN=AUTHORITY, OU=Test Dept, O=UAEPD, L=AbuDhabi, C=AE";
 
     @Suspendable
     @Override
@@ -115,7 +115,7 @@ public class TransferCarTokenFlow implements ClientStartableFlow {
                     .addCommand(new CarContract.Commands.Update())
                     .addSignatories(carState.getParticipants());
             UtxoSignedTransaction signedTransaction = transactionBuilder.toSignedTransaction();
-            flowEngine.subFlow(new FinalizeCarTokenSubFlow(signedTransaction, owner.getName()));
+            //flowEngine.subFlow(new FinalizeCarTokenSubFlow(signedTransaction, owner.getName()));
             return flowEngine.subFlow(new FinalizeCarTokenSubFlow(signedTransaction, owner.getName()));
 
             //return finalizedTransaction.getId().toString();
@@ -143,9 +143,59 @@ public class TransferCarTokenFlow implements ClientStartableFlow {
 "thirdParty" : "CN=ADInsurance, OU=Test Dept, O=ADInsurance, L=AbuDhabi, C=AE",
 "mods" : ["Exhaust Change", "Spoilers", "Speakers Changed"],
 "reasonsForRepair" : ["Check Engine light"],
-"owner": "CN=Bob, OU=Test Dept, O=R3, L=London, C=GB",
+"owner": "CN=ADRepairCentre, OU=Test Dept, O=R3, L=AbuDhabi, C=AE",
 "identifier" : "1",
 "reasonForRequest" : "Service Check"
+        }
+}
+
+when returning to owner:
+
+{
+    "clientRequestId": "transfer-2",
+    "flowClassName": "com.r3.developers.samples.TokenisedCarRegistry.workflows.TransferCarTokenFlow",
+    "requestBody": {
+"consumed": "False",
+"mileage" : "11000",
+"lscTire": "20231104",
+"lscOil" : "20231104",
+"lscCoolant" : "20231104",
+"lscFilter" : "20231104",
+"lscBattery" : "20231104",
+"amountOfTimesServiced" : "2",
+"currentOwnerMileage" : "11000",
+"userName" : "Faris",
+"thirdParty" : "CN=ADInsurance, OU=Test Dept, O=ADInsurance, L=AbuDhabi, C=AE",
+"mods" : ["Exhaust Change", "Spoilers", "Speakers Changed"],
+"reasonsForRepair" : ["Check Engine light"],
+"owner": "CN=Faris, OU=Test Dept, O=R3, L=AbuDhabi, C=AE",
+"identifier" : "1",
+"reasonForRequest" : "Return to owner"
+        }
+}
+
+or to sell the car:
+
+{
+    "clientRequestId": "transfer-3",
+    "flowClassName": "com.r3.developers.samples.TokenisedCarRegistry.workflows.TransferCarTokenFlow",
+    "requestBody": {
+"consumed": "False",
+"mileage" : "11000",
+"lscTire": "20231104",
+"lscOil" : "20231104",
+"lscCoolant" : "20231104",
+"lscFilter" : "20231104",
+"lscBattery" : "20231104",
+"amountOfTimesServiced" : "2",
+"currentOwnerMileage" : "11000",
+"userName" : "Faris",
+"thirdParty" : "CN=ADInsurance, OU=Test Dept, O=ADInsurance, L=AbuDhabi, C=AE",
+"mods" : ["Exhaust Change", "Spoilers", "Speakers Changed"],
+"reasonsForRepair" : ["Check Engine light"],
+"owner": "CN=Bob, OU=Test Dept, O=R3, L=London, C=GB",
+"identifier" : "1",
+"reasonForRequest" : "Selling the car"
         }
 }
  */
