@@ -53,7 +53,7 @@ Go to `POST /flow/{holdingidentityshorthash}`, enter the identity short hash(Far
 "thirdParty" : "CN=ADInsurance, OU=Test Dept, O=ADInsurance, L=AbuDhabi, C=AE",
 "mods" : ["Exhaust Change", "Spoilers"],
 "reasonsForRepair" : [],
-"owner": "CN=Bob, OU=Test Dept, O=R3, L=London, C=GB",
+"owner": "CN=Faris, OU=Test Dept, O=R3, L=AbuDhabi, C=AE",
 "identifier" : "1",
 "reasonForRequest" : "Issue a new vehicle"
 
