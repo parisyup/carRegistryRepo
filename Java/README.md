@@ -37,7 +37,7 @@ Go to `POST /flow/{holdingidentityshorthash}`, enter the identity short hash(Far
 ```
 {
  "clientRequestId": "issue-1",
-    "flowClassName": "com.r3.developers.samples.tokens.workflows.CarIssueFlow",
+    "flowClassName": "com.r3.developers.samples.TokenisedCarRegistry.workflows.CarIssueFlow",
     "requestBody": {
 "consumed": "False",
 "mileage" : "0",
@@ -68,7 +68,7 @@ Go to `POST /flow/{holdingidentityshorthash}`, enter the identity short hash(Bob
 ```
 {
     "clientRequestId": "list-1",
-    "flowClassName": "com.r3.developers.samples.tokens.workflows.ListCarFlow",
+    "flowClassName": "com.r3.developers.samples.TokenisedCarRegistry.workflows.ListCarFlow",
     "requestBody": {}
 }
 ```
@@ -82,7 +82,7 @@ Use Bob's holdingidentityshorthash to fire this post API.
 ```
 {
     "clientRequestId": "transfer-1",
-    "flowClassName": "com.r3.developers.samples.tokens.workflows.TransferCarTokenFlow",
+    "flowClassName": "com.r3.developers.samples.TokenisedCarRegistry.workflows.TransferCarTokenFlow",
     "requestBody": {
 "consumed": "False",
 "mileage" : "11000",
@@ -105,10 +105,11 @@ Use Bob's holdingidentityshorthash to fire this post API.
 ```
 
 After the service centre finishes servicing it and updates its information they need to send it back to Faris using the following but this time from ADRepairCentre's hash:
+
 ```
 {
     "clientRequestId": "transfer-2",
-    "flowClassName": "com.r3.developers.samples.tokens.workflows.TransferCarTokenFlow",
+    "flowClassName": "com.r3.developers.samples.TokenisedCarRegistry.workflows.TransferCarTokenFlow",
     "requestBody": {
 "consumed": "False",
 "mileage" : "11000",
@@ -137,7 +138,7 @@ The same thing can be used to sell the car. By just changing the owner like so:
 ```
 {
     "clientRequestId": "transfer-3",
-    "flowClassName": "com.r3.developers.samples.tokens.workflows.TransferCarTokenFlow",
+    "flowClassName": "com.r3.developers.samples.TokenisedCarRegistry.workflows.TransferCarTokenFlow",
     "requestBody": {
 "consumed": "False",
 "mileage" : "11000",
@@ -164,7 +165,7 @@ Go to `POST /flow/{holdingidentityshorthash}`, enter the identity short hash(Far
 ```
 {
     "clientRequestId": "list-2",
-    "flowClassName": "com.r3.developers.samples.tokens.workflows.ListCarTokens",
+    "flowClassName": "com.r3.developers.samples.TokenisedCarRegistry.workflows.ListCarTokens",
     "requestBody": {}
 }
 ```
