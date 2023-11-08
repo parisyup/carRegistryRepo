@@ -22,4 +22,4 @@ In this app you can:
 So the flows are pretty simple with the main flows as follows: 
 
 
-![alt text](/diagram.png)
+![alt text](/diagram.png.png)
