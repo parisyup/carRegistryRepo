@@ -9,19 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class CarContract implements Contract {
-    public static String ID = "com.CLT.contracts.CarContract";
-    private final static Logger log =  LoggerFactory.getLogger(CarContract.class);
-
 
     @Override
     public void verify(@NotNull UtxoLedgerTransaction transaction) {
         CarState outputCarState = null;
         //Issuing a car contract check
-        log.warn("1" );
         if(transaction.getCommands().size() != 1){
             throw new IllegalArgumentException("Car contract requires 1 command");
         }
-        log.warn("2" );
         if(transaction.getCommands().get(0) instanceof CarContract.Commands.Issue){
             if(!transaction.getInputStates(CarState.class).isEmpty()){
                 throw new IllegalArgumentException("Car contract issue requires 0 inputs");
@@ -30,18 +25,6 @@ public class CarContract implements Contract {
                 throw new IllegalArgumentException("Car contract issue requires 1 output");
             }
         }
-        log.warn("3" );
-
-        //if(transaction.getCommands().get(0) instanceof CarContract.Commands.Destroy){
-            //if(transaction.getInputStates(CarState.class).isEmpty()){
-              //  throw new IllegalArgumentException("Car contact Destroy requires 1 inputs");
-            //}
-            //if(transaction.getOutputStates(CarState.class).size() != 1){
-           //     throw new IllegalArgumentException("Car contact Destroy requires 1 output");
-         //   }
-
-            //CHECK SIGNATURES HERE!!!! FOR DESTROYED STATE
-       // }
 
         if(transaction.getCommands().get(0) instanceof CarContract.Commands.Update){
             if(transaction.getInputStates(CarState.class).isEmpty()){
@@ -51,23 +34,17 @@ public class CarContract implements Contract {
                 throw new IllegalArgumentException("Car contract update requires 1 output");
             }
         }
-        log.warn("4" );
+
         //CHECKING SIGNATURES FOR BOTH UPDATE AND ISSUE SINCE THEY BOTH HAVE OUTPUTS
         if(transaction.getCommands().get(0) instanceof CarContract.Commands.Update || transaction.getCommands().get(0) instanceof CarContract.Commands.Issue){
             outputCarState = (CarState) transaction.getOutputStates(CarState.class).get(0);
-            log.warn("4.1" );
-            log.warn("Size: " + outputCarState.getParticipants().size());
             if(!(transaction.getSignatories().contains(outputCarState.getParticipants().get(0)))){ //index 0 is always the issuer
                 throw new IllegalArgumentException("Issuer has to sign");
             }
-            log.warn("4.2" );
             if(!(transaction.getSignatories().contains(outputCarState.getParticipants().get(1)))){ //index 0 is always the owner
                 throw new IllegalArgumentException("Owner has to sign");
             }
         }
-        log.warn("5" );
-
-
 
         if(transaction.getCommands().get(0) instanceof CarContract.Commands.Update){
             CarState inputCarState = (CarState) transaction.getInputStates(CarState.class).get(0);
@@ -91,7 +68,6 @@ public class CarContract implements Contract {
             Boolean check16 = outputCarState.getCurrentOwnerMileage() + inputCarState.getCurrentOwnerMileage() > outputCarState.getMileage() && inputCarState.getUserName() == outputCarState.getUserName();
             Boolean check17 = !outputCarState.getMakeAndModel().equals(inputCarState.getMakeAndModel());
 
-
             if
             (check1 || check2 || check3 || check4 || check5 || check6 || check7 || check8 || check9 || check10 || check11 || check12 || check13 || check14 || check15 || check16 || check17)
             {
@@ -99,17 +75,10 @@ public class CarContract implements Contract {
                         check2 +", "+ check3 +", "+ check4 +", "+ check5 +", "+ check6 +", "+ check7 +", "+ check8
                         +", "+ check9 +", "+ check10 +", "+ check11 +", "+ check12 +", "+ check13 +", "+ check14 +", "+ check15 +", "+ check16 + ", " + check17);
             }
-
         }
-
-
-
-
     }
-
     public interface Commands extends Command{
         class Issue implements Commands {}
         class Update implements Commands {}
-       // class Destroy implements Commands {}
     }
 }

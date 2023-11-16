@@ -1,6 +1,7 @@
 package com.r3.developers.samples.TokenisedCarRegistry.states;
 
 import com.r3.developers.samples.TokenisedCarRegistry.contracts.CarContract;
+import net.corda.v5.base.annotations.ConstructorForDeserialization;
 import net.corda.v5.crypto.SecureHash;
 import net.corda.v5.ledger.utxo.BelongsToContract;
 import net.corda.v5.ledger.utxo.ContractState;
@@ -38,6 +39,7 @@ public class CarState implements ContractState {
     private final int identifier;
 
 
+    @ConstructorForDeserialization
     public CarState(SecureHash issuer, SecureHash owner, SecureHash thirdParty, List<PublicKey> participants, int mileage, boolean consumed, String makeAndModel, String reasonForRequest, String ownerInfo, String issuerInfo, String thirdPartyInfo, int lscTire, int lscOil, int lscCoolant, int lscFilter, int lscBattery, int amountOfTimesServiced, int amountOfRepairs, List<String> repairReasons, List<String> mods, int currentOwnerMileage, String userName, int identifier) {
         this.makeAndModel = makeAndModel;
         this.identifier = identifier;
