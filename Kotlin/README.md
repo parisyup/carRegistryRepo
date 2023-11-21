@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 
 ## The app
+=======
+## Tokens app
+>>>>>>> 36cd6d7e5f00e7c21ffd432b6080933d6075ec86
 It will be used to create and maintain information about a car while providing a copy to 
 a third party (Like an insurance comapny) if needed.
 
