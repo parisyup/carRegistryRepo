@@ -14,8 +14,6 @@ class CarContract: Contract {
     override fun verify(transaction: UtxoLedgerTransaction) {
         var outputCarState: CarState
         //Issuing a car contract check
-        //Issuing a car contract check
-
         require(transaction.commands.size == 1) { "Car contract requires 1 command" }
 
         if (transaction.commands[0] is Issue) {
@@ -24,37 +22,12 @@ class CarContract: Contract {
             ) { "Car contract issue requires 0 inputs" }
             require(transaction.getOutputStates(CarState::class.java).size == 1) { "Car contract issue requires 1 output" }
         }
-
-
-        //if(transaction.getCommands().get(0) instanceof CarContract.Commands.Destroy){
-        //if(transaction.getInputStates(CarState.class).isEmpty()){
-        //  throw new IllegalArgumentException("Car contact Destroy requires 1 inputs");
-        //}
-        //if(transaction.getOutputStates(CarState.class).size() != 1){
-        //     throw new IllegalArgumentException("Car contact Destroy requires 1 output");
-        //   }
-
-        //CHECK SIGNATURES HERE!!!! FOR DESTROYED STATE
-        // }
-
-
-        //if(transaction.getCommands().get(0) instanceof CarContract.Commands.Destroy){
-        //if(transaction.getInputStates(CarState.class).isEmpty()){
-        //  throw new IllegalArgumentException("Car contact Destroy requires 1 inputs");
-        //}
-        //if(transaction.getOutputStates(CarState.class).size() != 1){
-        //     throw new IllegalArgumentException("Car contact Destroy requires 1 output");
-        //   }
-
-        //CHECK SIGNATURES HERE!!!! FOR DESTROYED STATE
-        // }
         if (transaction.commands[0] is Transfer) {
             require(
                 !transaction.getInputStates(CarState::class.java).isEmpty()
             ) { "Car contract update requires 1 inputs" }
             require(transaction.getOutputStates(CarState::class.java).size == 1) { "Car contract update requires 1 output" }
         }
-        //CHECKING SIGNATURES FOR BOTH UPDATE AND ISSUE SINCE THEY BOTH HAVE OUTPUTS
         //CHECKING SIGNATURES FOR BOTH UPDATE AND ISSUE SINCE THEY BOTH HAVE OUTPUTS
         if (transaction.commands[0] is Transfer || transaction.commands[0] is Issue) {
             outputCarState = transaction.getOutputStates(CarState::class.java).get(0) as CarState
@@ -73,9 +46,6 @@ class CarContract: Contract {
                 "Owner has to sign"
             }
         }
-
-
-
 
         if (transaction.commands[0] is Transfer) {
             val inputCarState: CarState = transaction.getInputStates(CarState::class.java).get(0) as CarState
