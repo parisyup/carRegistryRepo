@@ -73,7 +73,8 @@ public class CarContract implements Contract {
             {
                 throw new IllegalArgumentException("Input has mismatched with the output. checks : " + check1 +", "+
                         check2 +", "+ check3 +", "+ check4 +", "+ check5 +", "+ check6 +", "+ check7 +", "+ check8
-                        +", "+ check9 +", "+ check10 +", "+ check11 +", "+ check12 +", "+ check13 +", "+ check14 +", "+ check15 +", "+ check16 + ", " + check17);
+                        +", "+ check9 +", "+ check10 +", "+ check11 +", "+ check12 +", "+ check13 +", "+ check14 +", "
+                        + check15 +", "+ check16 + ", " + check17);
             }
         }
     }
