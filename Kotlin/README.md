@@ -1,21 +1,12 @@
-# Tokens in Next-Gen Corda
 
-Unlike Corda 4, we don’t have an SDK for tokens in Next-Gen Corda;
-the token’s functionality is brought into the core C5 platform.
-We have also introduced a new Token Selection API, which enables a flow to claim
-tokens exclusively and provides a way to merge and return fungible tokens satisfying a given amount.
-
-In this sample, I will show you how you can create a tokenised car system,
-a database to maintain information about a car and provide it to the necassary parties.
-
-## Tokens app
+## The app
 It will be used to create and maintain information about a car while providing a copy to 
 a third party (Like an insurance comapny) if needed.
 
 In this app you can:
-1. Write a flow to Create a Car Asset/State on Ledger. `IssueCarTokensFlow`
+1. Write a flow to Create a Car Asset/State on Ledger. `IssueCarFlow`
 2. List out the Car entries you had. `ListCarFlow`
-3. Claim and transfer the tokens to a new member. `TransferCarTokenFlow`
+3. Claim and transfer the car info to a new member. `TransferCarFlow`
 
 ### Setting up
 
@@ -24,7 +15,7 @@ In this app you can:
    functions to check connectivity. (GET /cpi function call should return an empty list as for now.)
 2. We will now deploy the cordapp with a click of `5-vNodeSetup` task. Upon successful deployment of the CPI, the GET /cpi function call should now return the meta data of the cpi you just upload
 
-### Running the tokens app
+### Running the app
 
 In Corda 5, flows will be triggered via `POST /flow/{holdingidentityshorthash}` and flow result will need to be view at `GET /flow/{holdingidentityshorthash}/{clientrequestid}`
 * holdingidentityshorthash: the id of the network participants, ie Bob, Faris, Charlie. You can view all the short hashes of the network member with another gradle task called `ListVNodes`
@@ -37,7 +28,7 @@ Go to `POST /flow/{holdingidentityshorthash}`, enter the identity short hash(Far
 ```
 {
  "clientRequestId": "issue-1",
-    "flowClassName": "com.r3.developers.samples.tokens.workflows.CarIssueFlow",
+    "flowClassName": "com.r3.developers.samples.CarRegistry.workflows.CarIssueFlow",
     "requestBody": {
 "consumed": "False",
 "mileage" : "0",
@@ -61,28 +52,28 @@ Go to `POST /flow/{holdingidentityshorthash}`, enter the identity short hash(Far
 }
 ```
 
-After trigger the IssueCarTokensFlow flow, hop to `GET /flow/{holdingidentityshorthash}/{clientrequestid}` and enter the short hash(Faris's hash) and clientrequestid to view the flow result
+After trigger the IssueCarFlow flow, hop to `GET /flow/{holdingidentityshorthash}/{clientrequestid}` and enter the short hash(Faris's hash) and clientrequestid to view the flow result
 
 #### Step 2: List the car state
 Go to `POST /flow/{holdingidentityshorthash}`, enter the identity short hash(Bob's hash) and request body:
 ```
 {
     "clientRequestId": "list-1",
-    "flowClassName": "com.r3.developers.samples.tokens.workflows.ListCarFlow",
+    "flowClassName": "com.r3.developers.samples.CarRegistry.workflows.ListCarFlow",
     "requestBody": {}
 }
 ```
-After trigger the ListCarTokens flow, again, we need to hop to `GET /flow/{holdingidentityshorthash}/{clientrequestid}`
+After trigger the ListCar flow, again, we need to hop to `GET /flow/{holdingidentityshorthash}/{clientrequestid}`
 and check the result.
 
-#### Step 3: Transfer the car token with `TransferCarTokenFlow`
+#### Step 3: Transfer the car info with `TransferCarFlow`
 In this step, Faris will request a service from the service centre.
 Goto `POST /flow/{holdingidentityshorthash}`, enter the identity short hash and request body.
 Use Bob's holdingidentityshorthash to fire this post API.
 ```
 {
     "clientRequestId": "transfer-1",
-    "flowClassName": "com.r3.developers.samples.tokens.workflows.TransferCarTokenFlow",
+    "flowClassName": "com.r3.developers.samples.CarRegistry.workflows.TransferCarFlow",
     "requestBody": {
 "consumed": "False",
 "mileage" : "11000",
@@ -108,7 +99,7 @@ After the service centre finishes servicing it and updates its information they 
 ```
 {
     "clientRequestId": "transfer-2",
-    "flowClassName": "com.r3.developers.samples.tokens.workflows.TransferCarTokenFlow",
+    "flowClassName": "com.r3.developers.samples.CarRegistry.workflows.TransferCarFlow",
     "requestBody": {
 "consumed": "False",
 "mileage" : "11000",
@@ -137,7 +128,7 @@ The same thing can be used to sell the car. By just changing the owner like so:
 ```
 {
     "clientRequestId": "transfer-3",
-    "flowClassName": "com.r3.developers.samples.tokens.workflows.TransferCarTokenFlow",
+    "flowClassName": "com.r3.developers.samples.CarRegistry.workflows.TransferCarFlow",
     "requestBody": {
 "consumed": "False",
 "mileage" : "11000",
@@ -164,11 +155,11 @@ Go to `POST /flow/{holdingidentityshorthash}`, enter the identity short hash(Far
 ```
 {
     "clientRequestId": "list-2",
-    "flowClassName": "com.r3.developers.samples.tokens.workflows.ListCarTokens",
+    "flowClassName": "com.r3.developers.samples.CarRegistry.workflows.ListCarFlow",
     "requestBody": {}
 }
 ```
 Go to `POST /flow/{holdingidentityshorthash}`, enter the identity short hash(Charlie's hash) and request body:
 
 
-Thus, we have concluded a full run through of the token app.
+Thus, we have concluded a full run through of the app.
